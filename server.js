@@ -4,8 +4,8 @@ var express = require('express');
 var app = express();
 
 app.use(express.static(__dirname + '/public/'));
-app.set('views', __dirname);
-app.set('view engine', 'jade'); //extension of views
+app.use('views', __dirname);
+app.engine('jade', require('jade').__express);
 
 app.get('*', function(req, res, err){
   res.render('index');
