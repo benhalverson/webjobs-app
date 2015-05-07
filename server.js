@@ -12,5 +12,4 @@ app.get('*', function(req, res){
   console.info('All is well');
 });
 
-var port = Number(process.env.PORT || 3000);
-console.log('listening on port', port);
+app.listen(process.env.PORT, process.env.IP);
