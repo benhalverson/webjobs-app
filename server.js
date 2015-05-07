@@ -4,7 +4,7 @@ var express = require('express');
 var app = express();
 
 app.use(express.static(__dirname + '/client/'));
-app.set('views', __dirname);
+app.set('views', __dirname + 'views');
 app.set('view engine', 'jade'); //extension of views
 
 app.get('*', function(req, res){
