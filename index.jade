@@ -1,2 +1,8 @@
+doctype html
 link(rel='stylesheet', href='/bootstrap/dis/css/bootstrap.css')
-div hello
+
+script(src='/app/bower_components/angular/angular.js')
+script(src='/app/app.js')
+body(ng-app='dailyjobs-app')
+  div(ng-controller='testCtrl')
+    div {{ test }}

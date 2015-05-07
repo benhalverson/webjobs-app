@@ -3,7 +3,7 @@ var express = require('express');
 // var jade = require('jade');
 var app = express();
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public/'));
 app.set('views', __dirname);
 app.set('view engine', 'jade'); //extension of views
 
