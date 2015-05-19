@@ -1,7 +1,7 @@
 'use strict';
 var expect = require('chai').expect;
 var mongoose = require('mongoose');
-var jobModel = require('../models/job.model');
+var jobModel = require('../models/job.models');
 var Promise = require('bluebird');
 var jobsData = require('../jobs-data.js');
 
