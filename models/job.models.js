@@ -3,21 +3,31 @@ var mongoose = require('mongoose');
 var Promise = require('bluebird');
 
 var jobSchema = mongoose.Schema({
-  title:{ type: String},
-  description:{type:String}
+  title: {type: String},
+  description: {type: String}
 });
 
+var jobs = [
+{title: 'Cook', description: 'You will make food'},
+{title: 'Waiter', description: 'You will serve food'},
+{title: 'Developer', description: 'You will eat sleep and breathe code'}
+];
 
 var Job = mongoose.model('Job', jobSchema);
 
+
+function findJobs(query){
+  return Promise.cast(mongoose.model('Job').find(query).exec());
+}
+
+var createJob = Promise.promisify(Job.create, Job);
+
 exports.seedJobs = function(){
-  return new new Promise(function(resolve, reject) {
-    Job.find({}).exec(function(error, jobs){
-      if(collection.length === 0){
-        Job.create({title:'Cook', description: 'You will make food'});
-        Job.create({title:'Waiter', description: 'You will serve food'});
-        Job.create({title:'Developer', description: 'You will eat sleep and breathe code'}, resolve);
-      }
-    });
-  });
+  return findJobs({}).then(function(collection){
+        if(collection.length === 0){
+          return Promise.map(jobs, function(job){
+            return createJob(job);
+          });
+        }
+      });
 };
