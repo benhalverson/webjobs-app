@@ -8,7 +8,7 @@ body(ng-app='dailyjobs-app')
     h1 Find a Job
     div(ng-controller='testCtrl')
       .list-group
-        a.list-group-item(href='#')(ng-repeat='job in jobs')
+        a.list-group-item(href='#', ng-repeat='job in jobs')
           h4.list-group-item-heading {{ job.title }}
           p.list-group-item-text {{ job.description }}
       

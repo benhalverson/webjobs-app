@@ -1,6 +1,7 @@
 'use strict';
 var express = require('express');
 var mongoose = require('mongoose');
+var jobModel = require('./models/job.models');
 var app = express();
 
 app.set('views', __dirname);
@@ -9,7 +10,9 @@ app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public/'));
 
 app.get('/api/jobs', function(req, res){
-  res.send('test');
+  mongoose.model('Job').find({}).exec(function(error, collection){
+    res.send(collection);
+  });
 });
 
 app.get('*', function(req, res){
@@ -21,6 +24,7 @@ var connection = mongoose.connection;
 
 connection.once('open', function(){
   console.info('connected to mongodb successfully!');
+  jobModel.seedJobs();
 });
 
   console.info('Web server started');
