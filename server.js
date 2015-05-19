@@ -18,17 +18,16 @@ app.get('/api/jobs', function(req, res){
 app.get('*', function(req, res){
   res.render('index');
 
-mongoose.connect('mongodb://localhost/jobfinder');
+  mongoose.connect('mongodb://localhost/jobfinder');
 
-var connection = mongoose.connection;
+  var connection = mongoose.connection;
 
-connection.once('open', function(){
+  connection.once('open', function(){
   console.info('connected to mongodb successfully!');
   jobModel.seedJobs();
 });
 
   console.info('Web server started');
-
 });
 
 // app.listen(process.env.PORT, process.env.IP || 3000);
